@@ -1,3 +1,6 @@
+_site/
+.sass-cache/
+.jekyll-metadata
 *.codekit
-css/.sass-cache/
+/assets/css/.sass-cache/
 .DS_Store

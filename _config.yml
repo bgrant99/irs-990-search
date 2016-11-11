@@ -1,7 +1,7 @@
 # Site settings
 # Meta tags
-title: IRS Form 990PF Search
-description: Find machine-readable IRS Form 990PF's
+title: #Not used
+description: #Not used
 
 # Jekyll settings
 baseurl: "" # Leave this blank unless your site is located on a subpath, e.g. /blog

@@ -1,21 +1,32 @@
 <!doctype html>
 <html>
 <head>
-  <title>Instant Search Tutorial</title>
+  <title>US Grantmakers Search</title>
+  <meta name="description" content="Find machine-readable IRS Form 990PF's for US grantmaking institutions. An open source project from your friends at SmarterGiving.">
+  <!-- /favicon -->
+  <link href='favicon.ico' rel='shortcut icon' type='image/vnd.microsoft.icon'>
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.ion.rangeslider/2.0.12/css/ion.rangeSlider.css">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.ion.rangeslider/2.0.12/css/ion.rangeSlider.skinFlat.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
   <!-- /CSS -->
 </head>
 <body>
 
+  <!--<div class='clear-page-controls'>
+    <div class='share-engine-disclaimer'>
+      <a href="https://smartergiving.org"><img alt="SmarterGiving" src="../img/smartergiving_icon.svg" /></a> <a href="" class="install-extension"> Install the free XML viewer</a> to help read the XML-formatted electronic filings
+    </div>
+  </div>
+  -->
 
   <!-- Header -->
   <header>
-    <img src="img/instant_search_logo@2x.png"/>
-    <input id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Search by name, brand, description..."/>
+    <img class="logo" src="/assets/img/instant_search_logo@2x.png"/>
+    <input id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Search by Foundation Name..." autofocus/>
     <div id="search-input-icon"></div>
+    <div class="search-img-algolia"><a href="https://www.algolia.com">Search powered by <img src="/assets/img/Algolia_logo_bg-white.svg" alt="Powered by Algolia"></a></div>
+    <div class="intro">Find electronic tax filings of US-based foundations <a href="#learn-more" class="scroll"><span class="circle">i</span></a></div>
   </header>
   <!-- /Header -->
 
@@ -32,8 +43,8 @@
       <div id="sort-by">Sort by:
         <select dir="rtl" id="sort-by-select">
           <option value="" selected>Most relevant</option>
-          <option value="_price_asc">Lowest Price</option>
-          <option value="_price_desc">Highest Price</option>
+          <option value="_TaxPeriod_asc">Lowest Price</option>
+          <option value="_TaxPeriod_desc">Highest Price</option>
         </select>
         <span class="caret"></span>
       </div>
@@ -47,8 +58,14 @@
 
   <!-- Footer -->
   <footer>
-    Source Code on <a href="http://github.com/algolia/instant-search-demo">Github</a> -
-    Powered by <a href="http://algolia.com">Algolia</a> - Data from <a href="https://developer.bestbuy.com">Best Buy</a>
+    <div id="learn-more">
+      An open source tool from your friends at<br><a href="https://smartergiving.org"><img src="/assets/img/smartergiving_logo.svg" alt="SmarterGiving"></a>
+    </div>
+    <div class="footer-links">
+      Data from <a href="https://aws.amazon.com/public-data-sets/irs-990/">Electronically Filed IRS Form 990</a> -
+      Search by <a href="http://algolia.com">Algolia</a> -
+      Source Code on <a href="http://github.com/smartergiving/algolia-jekyll-instant-search">Github</a>
+    </div> 
   </footer>
   <!-- /Footer -->
 
@@ -62,9 +79,23 @@
         <img src="{{ image }}" alt="{{ name }}">
       </div>
       <div class="hit-content">
+        <!--
         <h3 class="hit-price">${{ price }}</h3>
         <h2 class="hit-name">{{{ _highlightResult.name.value }}}</h2>
-        <p class="hit-description">{{{ _highlightResult.description.value }}}</p>
+        <p class="hit-description">{{{ _highlightResult.description.value }}}</p> 
+        -->
+        <h3 class="hit-price"><span class="format-EIN">{{ EIN }}</span> (EIN)</h3>
+        <h2 class="hit-name">{{ OrganizationName }}</h2>
+        <div class="hit-filings-wrapper">
+          <ul>
+            {{#Filings}}
+            <li><a href="{{ URL }}" target="_blank"><span class="format-tax-period">{{TaxPeriod}}</span></a></li>
+            {{/Filings}}
+            {{^Filings}}
+            <li><a href="{{ URL }}" target="_blank"><span class="format-tax-period">{{TaxPeriod}}</span></a></li>
+            {{/Filings}}
+          </ul>
+        </div>
       </div>
     </div>
     {{/hits}}
@@ -72,7 +103,8 @@
 
   <!-- Stats template -->
   <script type="text/template" id="stats-template">
-    {{ nbHits }} Result{{#nbHits_plural}}s{{/nbHits_plural}} <span class="found-in">Found in {{ processingTimeMS }}ms</span>
+    <span class="format-number">{{ nbHits }}</span> Grantmaker{{#nbHits_plural}}s{{/nbHits_plural}} <span class="found-in">Found in {{ processingTimeMS }}ms</span>
+    <span class="intro-viewer-link"><a href="https://chrome.google.com/webstore/detail/irs-form-990-pf-viewer/mkdlgildlkgnabibkmckjlggcpenmiln" target="_blank">Install the free XML Viewer</a></span>
   </script>
 
   <!-- Facet template -->
@@ -83,7 +115,8 @@
         {{#values}}
         <li>
           <a href="" class="facet-link toggle-refine {{#disjunctive}}facet-disjunctive{{/disjunctive}} {{#isRefined}}facet-refined{{/isRefined}}" data-facet="{{ facet }}" data-value="{{ name }}">
-            {{ name }}<span class="facet-count">{{ count }}</span>
+            <span class="facet-value">{{ name }}</span>
+            <span class="facet-count format-number-facet">{{ count }}</span>
           </a>
         </li>
         {{/values}}
@@ -134,7 +167,8 @@
   <script src="//cdn.jsdelivr.net/algoliasearch.helper/2/algoliasearch.helper.min.js"></script>
   <script src="//cdn.jsdelivr.net/hogan.js/3.0.2/hogan.min.common.js"></script>
   <script src="//cdn.jsdelivr.net/jquery.ion.rangeslider/2.0.12/js/ion.rangeSlider.min.js"></script>
-  <script src="js/app.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/scroll.min.js"></script>
   <!-- /Javascript -->
 
 </body>
