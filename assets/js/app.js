@@ -176,7 +176,7 @@ $(document).ready(function() {
             algoliaHelper.removeNumericRefinement(facetName, '<=');
             algoliaHelper.addNumericRefinement(facetName, '<=', data.to).search();
           }
-        }
+        };
     }
     
     // Bind Sliders
@@ -190,9 +190,9 @@ $(document).ready(function() {
         max: slider.data('max'),
         from: slider.data('from'),
         to: slider.data('to'),
-        prettify: function(num) {
-          return '$' + parseInt(num, 10);
-        },
+        prettify_enabled: true,
+        prettify_separator: ",",
+        prefix: "$",
         onFinish: createOnFinish(facetName)
       };
       slider.ionRangeSlider(sliderOptions);
@@ -310,7 +310,7 @@ $(document).ready(function() {
   function initFromURLParams() {
     var URLString = window.location.search.slice(1);
     var URLParams = algoliasearchHelper.url.getStateFromQueryString(URLString);
-    var stateFromURL = Object.assign({}, PARAMS, URLParams)
+    var stateFromURL = Object.assign({}, PARAMS, URLParams);
     $searchInput.val(stateFromURL.query);
     $sortBySelect.val(stateFromURL.index.replace(INDEX_NAME, ''));
     algoliaHelper.overrideStateWithoutTriggeringChangeEvent(stateFromURL);
