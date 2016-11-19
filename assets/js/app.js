@@ -11,13 +11,13 @@ $(document).ready(function() {
   var PARAMS = {
     hitsPerPage: 10,
     maxValuesPerFacet: 8,
-    facets: ['OrganizationName', 'Filings.TaxPeriod'],
+    facets: ['Filings.TaxPeriod'],
     disjunctiveFacets: [],
     index: INDEX_NAME
   };
   var FACETS_SLIDER = ['price'];
-  var FACETS_ORDER_OF_DISPLAY = ['OrganizationName', 'Filings.TaxPeriod'];
-  var FACETS_LABELS = {OrganizationName: 'Organization Name', 'Filings.TaxPeriod': 'Tax Period'};
+  var FACETS_ORDER_OF_DISPLAY = ['Filings.TaxPeriod'];
+  var FACETS_LABELS = {'Filings.TaxPeriod': 'Tax Period'};
 
   // Client + Helper initialization
   var algolia = algoliasearch(APPLICATION_ID, SEARCH_ONLY_API_KEY);
