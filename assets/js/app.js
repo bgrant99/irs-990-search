@@ -16,7 +16,7 @@ $(document).ready(function() {
     index: INDEX_NAME
   };
   var FACETS_SLIDER = ['Assets'];
-  var FACETS_ORDER_OF_DISPLAY = ['Filings.TaxYear', 'State', 'City'];
+  var FACETS_ORDER_OF_DISPLAY = ['City', 'State', 'Filings.TaxYear'];
   var FACETS_LABELS = {'Filings.TaxYear': 'Tax Year'};
 
   // Client + Helper initialization
