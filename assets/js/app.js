@@ -114,13 +114,11 @@ $(document).ready(function() {
     //Format Website results
     $('.hit-website').each(function(){
       var site = $(this).data('website');
-      console.log('1: ' + site);
       if (site && !site.match(/^http([s]?):\/\/.*/)) {
         site = 'http://' + site;
       } else {
         site = site;
       }
-      console.log('2: ' + site);
       $(this).attr('href', site);
     });
 
