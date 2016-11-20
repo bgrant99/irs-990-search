@@ -52,12 +52,11 @@
   <!-- Footer -->
   <footer>
     <div id="learn-more">
-      An open source tool from your friends at<br><a href="https://smartergiving.org"><img src="/irs-990-search/assets/img/smartergiving_logo.svg" alt="SmarterGiving"></a>
+      An open source tool from your friends at<br><a href="https://smartergiving.org"><img src="/irs-990-search/assets/img/smartergiving_logo.png" alt="SmarterGiving"></a>
     </div>
     <div class="footer-links">
-      Data from <a href="https://aws.amazon.com/public-data-sets/irs-990/">Electronically Filed IRS Form 990</a> -
-      Search by <a href="http://algolia.com">Algolia</a> -
-      Source Code on <a href="http://github.com/smartergiving/algolia-jekyll-instant-search">Github</a>
+      Data Source: <a href="https://aws.amazon.com/public-data-sets/irs-990/">Electronically Filed IRS Form 990</a> |
+      Source Code: <a href="http://github.com/smartergiving/algolia-jekyll-instant-search">Github</a>
     </div> 
   </footer>
   <!-- /Footer -->
@@ -148,7 +147,7 @@
       <ul>
         {{#filters}}
         <li class="{{ class }}" data-facet="{{ facet }}" data-value="{{ facet_value }}">
-          {{ label }}<span class="value">{{ label_value }}</span><a class="remove"><img src="img/remove.svg"/></a>
+          {{ label }}<span class="value">{{ label_value }}</span><a class="remove"><img src="/irs-990-search/assets/img/remove.svg"/></a>
         </li>
         {{/filters}}
         <br>

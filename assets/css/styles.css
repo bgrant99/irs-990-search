@@ -291,7 +291,7 @@ header img.logo {
 	width: 16px;
 	height: 16px;
 	content: '';
-	background: url(../img/checkbox_icons.png) 0 0 no-repeat;
+	background: url(/irs-990-search/assets/img/checkbox_icons.png) 0 0 no-repeat;
 }
 .facet-disjunctive:hover:before {
 	background-position: -24px 0;
@@ -545,6 +545,6 @@ footer {
     padding-top: 50px;
 }
 #learn-more img {
-	margin: 10px 0 25px 0;
+	margin: 25px 0 25px 0;
 	width: 200px;
 }
