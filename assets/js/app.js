@@ -11,13 +11,13 @@ $(document).ready(function() {
   var PARAMS = {
     hitsPerPage: 10,
     maxValuesPerFacet: 8,
-    facets: ['City', 'State', 'Filings.TaxPeriod'],
+    facets: ['City', 'State', 'Filings.TaxYear'],
     disjunctiveFacets: [],
     index: INDEX_NAME
   };
   var FACETS_SLIDER = ['Assets'];
-  var FACETS_ORDER_OF_DISPLAY = ['Filings.TaxPeriod', 'State', 'City'];
-  var FACETS_LABELS = {'Filings.TaxPeriod': 'Tax Period'};
+  var FACETS_ORDER_OF_DISPLAY = ['Filings.TaxYear', 'State', 'City'];
+  var FACETS_LABELS = {'Filings.TaxYear': 'Tax Year'};
 
   // Client + Helper initialization
   var algolia = algoliasearch(APPLICATION_ID, SEARCH_ONLY_API_KEY);
@@ -109,12 +109,6 @@ $(document).ready(function() {
     $('.format-EIN').each(function(){
       var string = $(this).text();
       $(this).text(string.substring(0,2) + '-' + string.substring(2,8));
-    });
-
-    //Format Tax Period results
-    $('.format-tax-period').each(function(){
-      var string = $(this).text();
-      $(this).text(string.substring(0,4));
     });
 
     //Format Website results
