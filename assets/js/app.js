@@ -11,12 +11,12 @@ $(document).ready(function() {
   var PARAMS = {
     hitsPerPage: 10,
     maxValuesPerFacet: 8,
-    facets: ['Filings.TaxPeriod'],
+    facets: ['City', 'State', 'Filings.TaxPeriod'],
     disjunctiveFacets: [],
     index: INDEX_NAME
   };
-  var FACETS_SLIDER = ['price'];
-  var FACETS_ORDER_OF_DISPLAY = ['Filings.TaxPeriod'];
+  var FACETS_SLIDER = ['Assets'];
+  var FACETS_ORDER_OF_DISPLAY = ['Filings.TaxPeriod', 'State', 'City'];
   var FACETS_LABELS = {'Filings.TaxPeriod': 'Tax Period'};
 
   // Client + Helper initialization
