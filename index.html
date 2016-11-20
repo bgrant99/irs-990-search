@@ -8,17 +8,10 @@
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.ion.rangeslider/2.0.12/css/ion.rangeSlider.css">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.ion.rangeslider/2.0.12/css/ion.rangeSlider.skinFlat.css">
+  <link rel="stylesheet" href="/irs-990-search/assets/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="/irs-990-search/assets/css/styles.css">
-  <!-- /CSS -->
 </head>
 <body>
-
-  <!--<div class='clear-page-controls'>
-    <div class='share-engine-disclaimer'>
-      <a href="https://smartergiving.org"><img alt="SmarterGiving" src="../img/smartergiving_icon.svg" /></a> <a href="" class="install-extension"> Install the free XML viewer</a> to help read the XML-formatted electronic filings
-    </div>
-  </div>
-  -->
 
   <!-- Header -->
   <header>
@@ -26,7 +19,7 @@
     <input id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Search by Foundation Name..." autofocus/>
     <div id="search-input-icon"></div>
     <div class="search-img-algolia"><a href="https://www.algolia.com">Search powered by <img src="/irs-990-search/assets/img/Algolia_logo_bg-white.svg" alt="Powered by Algolia"></a></div>
-    <div class="intro">Find electronic tax filings of US-based foundations <a href="#learn-more" class="scroll"><span class="circle">i</span></a></div>
+    <div class="intro">Find electronic tax filings of US-based foundations <a href="#learn-more" class="scroll"><i class="fa fa-info-circle"></i></a></div>
   </header>
   <!-- /Header -->
 
@@ -84,16 +77,21 @@
         <h2 class="hit-name">{{{ _highlightResult.name.value }}}</h2>
         <p class="hit-description">{{{ _highlightResult.description.value }}}</p> 
         -->
-        <h3 class="hit-price"><span class="format-EIN">{{ EIN }}</span> (EIN)</h3>
+        <h3 class="hit-price">
+          <!-- <span class="format-EIN">{{ EIN }}</span> (EIN)<br> -->
+          <span class="hit-location">{{ City }}, {{ State }}</span>
+        </h3>
+
         <h2 class="hit-name">{{{ _highlightResult.OrganizationName.value }}}</h2>
+
         <div class="hit-filings-wrapper">
           <ul>
             {{#Filings}}
             <li><a href="{{ URL }}" target="_blank"><span class="format-tax-period">{{TaxPeriod}}</span></a></li>
             {{/Filings}}
-            {{^Filings}}
-            <li><a href="{{ URL }}" target="_blank"><span class="format-tax-period">{{TaxPeriod}}</span></a></li>
-            {{/Filings}}
+            {{#Website}}
+            <li><a class="hit-website" data-website="{{ Website }}" href="" target="_blank"><i class="fa fa-globe"></i></a></li>
+            {{/Website}}
           </ul>
         </div>
       </div>

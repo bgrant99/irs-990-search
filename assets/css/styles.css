@@ -466,6 +466,9 @@ header {
 	text-decoration: none;
 	color: #000;
 }
+.fa-info-circle {
+	color: #cbcbcb;
+}
 .circle {
   width: 13px;
   height: 13px;
@@ -533,12 +536,13 @@ a .hit-content:hover {
 	color: #fff;
 	background-color: #49BF9D;
 }
+.hit-location {
+	color: #999;
+	float: right;
+}
 footer {
 	border-top: 1px solid #eee;
     padding-top: 50px;
-}
-#learn-more {
-	color: #999;
 }
 #learn-more img {
 	margin: 10px 0 25px 0;

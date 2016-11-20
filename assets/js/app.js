@@ -104,16 +104,34 @@ $(document).ready(function() {
 
   function renderHits(content) {
     $hits.html(hitTemplate.render(content));
-    //Format results
+
+    //Format EIN results
     $('.format-EIN').each(function(){
       var string = $(this).text();
       $(this).text(string.substring(0,2) + '-' + string.substring(2,8));
     });
+
+    //Format Tax Period results
     $('.format-tax-period').each(function(){
       var string = $(this).text();
       $(this).text(string.substring(0,4));
     });
+
+    //Format Website results
+    $('.hit-website').each(function(){
+      var site = $(this).data('website');
+      console.log('1: ' + site);
+      if (site && !site.match(/^http([s]?):\/\/.*/)) {
+        site = 'http://' + site;
+      } else {
+        site = site;
+      }
+      console.log('2: ' + site);
+      $(this).attr('href', site);
+    });
+
   }
+
 
   function renderFacets(content, state) {
     var facetsHtml = '';
