@@ -111,15 +111,42 @@ $(document).ready(function() {
       $(this).text(string.substring(0,2) + '-' + string.substring(2,8));
     });
 
-    //Format Website results
+    //TODO - DRY it up
+    //Format Website results to provide proper href
     $('.hit-website').each(function(){
+
       var site = $(this).data('website');
-      if (site && !site.match(/^http([s]?):\/\/.*/)) {
-        site = 'http://' + site;
-      } else {
+           
+      if (site && site.match(/(?:(?:https?):\/\/)/i)) { //Check if properly formatted url
+
         site = site;
+        $(this).attr('href', site);
+      
+      } else if (site && site.match(/(^www.)/i)) {  //Check if www.
+
+        site = 'http://' + site;
+        $(this).attr('href', site);
+       
+      } else if (site && site.match(/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/i)) { //Check if apex domain (e.g. example.com)
+
+        site = 'http://' + site;
+        $(this).attr('href', site);
+       
+      } else if (site && site.match(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/i)) { //Check if email address
+        site = 'mailto:' + site;
+        $(this).attr('href', site);
+        
+      } else { //Alert if malformed url
+
+        $(this).removeAttr('href');
+        $(this).bind('click', function(){
+          alert(
+            'Hmm, looks like the website url is not properly formatted.' + 
+            '\n\n' + site + '\n\n' +
+            'Copy and pasting into Google should help find the right site.'
+          );
+        });
       }
-      $(this).attr('href', site);
     });
 
   }
