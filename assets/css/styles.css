@@ -65,7 +65,7 @@ header img.logo {
 #search-input:focus {
 	border-color: #49BF9D;
 }
-#search-input::-webkit-input-placeholder, #search-input:-moz-placeholder, #search-input:-moz-placeholder, #search-input:-ms-input-placeholder {
+#search-input::-webkit-input-placeholder, #search-input:-moz-placeholder, #search-input::-moz-placeholder, #search-input:-ms-input-placeholder {
 	font-weight: 100;
 	color: #999;
 }
@@ -207,6 +207,7 @@ header img.logo {
 	background: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
+	appearance: none;
 }
 #sort-by .caret {
 	position: absolute;
