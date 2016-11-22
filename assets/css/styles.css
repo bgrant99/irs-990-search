@@ -394,6 +394,10 @@ a {
 a:hover {
 	text-decoration: underline;
 }
+a img {
+	border: none;
+	outline: none;
+}
 /* Notification Bar */
 /*
 .clear-page-controls {
