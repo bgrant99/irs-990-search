@@ -1,11 +1,17 @@
+---
+---
+$baseurl: {{ site.baseurl }};
 
-/* SASS VARIABLES */
-/* not yet used */
-/*
-	$red-original: #ed5565;
+/* SASS VARIABLES
+// ------------------------- */
 	$orange: #c54e00;
 	$green: #49BF9D;
-*/
+	$green-light: #E2FBF4;
+	$gray: #999;
+	$gray-light: #eee;
+	
+	//Default theme
+	$red-original: #ed5565;
 
 /* GENERAL
 // ------------------------- */
@@ -56,18 +62,18 @@ header img.logo {
 	margin-left: 26%;
 	padding: 10px 0 6px;
 	border: none;
-	border-bottom: 5px solid #eee;
+	border-bottom: 5px solid $gray-light;
 }
 #search-input, #search-input:focus {
 	transition: border-color .3s ease-in;
 	outline: 0;
 }
 #search-input:focus {
-	border-color: #49BF9D;
+	border-color: $green;
 }
 #search-input::-webkit-input-placeholder, #search-input:-moz-placeholder, #search-input::-moz-placeholder, #search-input:-ms-input-placeholder {
 	font-weight: 100;
-	color: #999;
+	color: $gray;
 }
 #search-input-icon {
 	position: relative;
@@ -80,11 +86,11 @@ header img.logo {
 	height: 20px;
 	content: '';
 	cursor: default;
-	background: url(../img/search_icon.png) no-repeat;
+	background: url({{ site.baseurl }}/assets/img/search_icon.png) no-repeat;
 }
 #search-input-icon.empty:before {
 	cursor: pointer;
-	background-image: url(../img/delete_icon.png);
+	background-image: url({{ site.baseurl }}/assets/img/delete_icon.png);
 }
 
 
@@ -95,12 +101,12 @@ header img.logo {
 #hits {
 	margin: 4px 0;
 	padding: 10px 0;
-	border-top: 2px solid #eee;
+	border-top: 2px solid $gray-light;
 }
 .hit {
 	font-size: 0;
 	padding: 8px 0;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid $gray-light;
 }
 .hit-image {
 	display: inline-block;
@@ -122,7 +128,7 @@ header img.logo {
 	font-size: 20px;
 	float: right;
 	margin-left: 20px;
-	color: #49BF9D;
+	color: $green;
 }
 .hit-content .hit-price, .hit-content .hit-name {
 	font-weight: normal;
@@ -130,10 +136,10 @@ header img.logo {
 }
 .hit-content em {
 	font-style: normal;
-	background: #E2FBF4;
+	background: $green-light;
 }
 .hit-content .hit-description {
-	color: #999;
+	color: $gray;
 }
 
 
@@ -157,25 +163,25 @@ header img.logo {
 	padding: 8px 12px;
 	text-decoration: none;
 	color: #000;
-	border: 1px solid #eee;
+	border: 1px solid $gray-light;
 	border-right: none;
 }
 #pagination a:hover {
-	background: #f5f5f5;
+	background: $gray-light;
 }
 #pagination li:first-child a {
 	border-top-left-radius: 4px;
 	border-bottom-left-radius: 4px;
 }
 #pagination li:last-child a {
-	border-right: 1px solid #eee;
+	border-right: 1px solid $gray-light;
 	border-top-right-radius: 4px;
 	border-bottom-right-radius: 4px;
 }
 #pagination li.active a {
 	color: white;
-	border-color: #49BF9D;
-	background: #49BF9D;
+	border-color: $green;
+	background: $green;
 }
 #pagination li.active a:hover {
 	cursor: default;
@@ -196,7 +202,7 @@ header img.logo {
 	font-weight: 300;
 	position: relative;
 	float: right;
-	color: #999;
+	color: $gray;
 }
 #sort-by select {
 	font-size: 16px;
@@ -235,7 +241,7 @@ header img.logo {
 }
 #stats .found-in {
 	font-size: 12px;
-	color: #999;
+	color: $gray;
 }
 
 
@@ -250,7 +256,7 @@ header img.logo {
 	margin: 0 0 6px;
 	padding: 0 0 6px;
 	text-transform: uppercase;
-	border-bottom: 2px solid #eee;
+	border-bottom: 2px solid $gray-light;
 }
 .facet ul {
 	margin: 0;
@@ -267,17 +273,17 @@ header img.logo {
 	color: #000;
 }
 .facet-link:hover, .facet-link.facet-refined {
-	color: #49BF9D;
+	color: $green;
 }
 .facet .facet-link.facet-refined:hover {
 	text-decoration: line-through;
-	color: #49BF9D;
+	color: $green;
 }
 .facet-count {
 	position: relative;
 	top: 3px;
 	float: right;
-	color: #999;
+	color: $gray;
 }
 /* Checkboxes */
 .facet-disjunctive {
@@ -292,7 +298,7 @@ header img.logo {
 	width: 16px;
 	height: 16px;
 	content: '';
-	background: url(/irs-990-search/assets/img/checkbox_icons.png) 0 0 no-repeat;
+	background: url({{ site.baseurl }}/assets/img/checkbox_icons.png) 0 0 no-repeat;
 }
 .facet-disjunctive:hover:before {
 	background-position: -24px 0;
@@ -328,8 +334,8 @@ header img.logo {
 	display: inline-block;
 	margin: 4px 2px;
 	padding: 4px 28px 4px 8px;
-	color: #999;
-	border: 1px solid #ddd;
+	color: $gray;
+	border: 1px solid #ddd; //TODO Cleanup grays and hover states with darken/lighten
 	border-radius: 12px;
 }
 #no-results-message li span.value {
@@ -356,12 +362,12 @@ a.clear-all {
 	padding: 8px 12px;
 	text-decoration: none;
 	color: black;
-	border: 2px solid #ddd;
+	border: 2px solid #ddd; //TODO Cleanup grays and hover states with darken/lighten
 	border-radius: 4px;
 }
 a.clear-all:hover {
 	transition: border-color .3s ease-in;
-	border-color: #999;
+	border-color: $gray;
 }
 
 
@@ -377,11 +383,11 @@ footer {
 }
 footer a {
 	text-decoration: none;
-	color: #49BF9D;
+	color: $green;
 }
 footer a:hover {
 	text-decoration: underline;
-	color: #49BF9D;
+	color: $green;
 }
 
 /* IRS SEARCH SPECIFIC
@@ -407,11 +413,11 @@ a img {
     padding: 10px;
     width: 100%;
     background-color: #787878;
-    background-color: #49BF9D;
+    background-color: $green;
     background-color: #000;
 }
 .share-engine-disclaimer {
-    color: #999;
+    color: $gray;
     margin-top: 2px;
     margin-left: 20px;
     font-size: 13px;
@@ -439,13 +445,13 @@ header {
 	height: 140px;
 }
 #search-input:focus {
-	border-color: #49BF9D;
+	border-color: $green;
 }
 .search-img-algolia {
 	display: inline-block;
 	margin-top: 15px;
 	font-size: 13px;
-	color: #999;
+	color: $gray;
 	float: right;
 }
 .search-img-algolia a:hover {
@@ -459,12 +465,12 @@ header {
 	max-width: 23%;
 	font-size: 13px;
 	line-height: 1.5em;
-	color: #999;
+	color: $gray;
 	margin-top: 25px;
 
 }
 .intro a {
-	color: #49BF9D;
+	color: $green;
 	/*border-bottom: 1px dotted;*/
 }
 .intro a:hover {
@@ -472,49 +478,37 @@ header {
 	color: #000;
 }
 .fa-info-circle {
-	color: #cbcbcb;
-}
-.circle {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  display: inline-block;
-  font-size: 13px;
-  font-style: italic;
-  color: #fff;
-  line-height: 13px;
-  text-align: center;
-  background-color: #cbcbcb;
+	color: lighten($gray, 20%);
 }
 .intro-viewer-link {
 	display: block;
 	float: right;
 	font-size: 12px;
-	color: #999;
+	color: $gray;
 }
 .intro-viewer-link a {
-	background-color: #49BF9D;
+	background-color: $green;
 	color: #fff;
 	padding: 2px 4px;
 	border-radius: 3px;
 }
 .intro-viewer-link a:hover {
 	text-decoration: none;
-	background-color: #2BA885;
+	background-color: darken($green, 10%);
 }
 .hit-content {
 	width: 96%;
     padding: 2%;
 }
 a .hit-content:hover {
-	background-color: #fafafa;
+	background-color: #fafafa; //TODO Cleanup grays and hover states with darken/lighten
 }
 .hit-content .hit-price {
 	font-size: 13px;
-	color: #999;
+	color: $gray;
 }
 .hit-content .hit-description {
-	color: #999;
+	color: $gray;
 }
 .hit-filings-wrapper ul {
 	margin: 0;
@@ -529,24 +523,24 @@ a .hit-content:hover {
 .hit-filings-wrapper ul li a {
 	text-decoration: none;
 	padding: .2em 1em;
-	color: #999;
-	background-color: #f7f7f7;
+	color: $gray;
+	background-color: #f7f7f7; //TODO Cleanup grays and hover states with darken/lighten
 	border-radius: 3px;
 }
 .hit-filings-wrapper ul li:first-child a {
-	background-color: #e0e0e0;
+	background-color: #e0e0e0; //TODO Cleanup grays and hover states with darken/lighten
 }
 
 .hit-filings-wrapper ul li a:hover {
 	color: #fff;
-	background-color: #49BF9D;
+	background-color: $green;
 }
 .hit-location {
-	color: #999;
+	color: $gray;
 	float: right;
 }
 footer {
-	border-top: 1px solid #eee;
+	border-top: 1px solid $gray-light;
     padding-top: 50px;
 }
 #learn-more img {

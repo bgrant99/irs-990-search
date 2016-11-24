@@ -1,0 +1,94 @@
+{% raw %}
+  <!-- Hit template -->
+  <script type="text/template" id="hit-template">
+    {{#hits}}
+    <div class="hit">
+      <div class="hit-image">
+        <img src="{{ image }}" alt="{{ name }}">
+      </div>
+      <div class="hit-content">
+        <!--
+        <h3 class="hit-price">${{ price }}</h3>
+        <h2 class="hit-name">{{{ _highlightResult.name.value }}}</h2>
+        <p class="hit-description">{{{ _highlightResult.description.value }}}</p> 
+        -->
+        <h3 class="hit-price">
+          <!-- <span class="format-EIN">{{ EIN }}</span> (EIN)<br> -->
+          <span class="hit-location">{{ City }}, {{ State }}</span>
+        </h3>
+
+        <h2 class="hit-name">{{{ _highlightResult.OrganizationName.value }}}</h2>
+
+        <div class="hit-filings-wrapper">
+          <ul>
+            {{#Filings}}
+            <li><a href="{{ URL }}" target="_blank">{{TaxYear}}</a></li>
+            {{/Filings}}
+            {{#Website}}
+            <li><a class="hit-website" data-website="{{ Website }}" href="" target="_blank"><i class="fa fa-globe"></i></a></li>
+            {{/Website}}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {{/hits}}
+  </script>
+
+  <!-- Stats template -->
+  <script type="text/template" id="stats-template">
+    <span class="format-number">{{ nbHits }}</span> Grantmaker{{#nbHits_plural}}s{{/nbHits_plural}} <span class="found-in">Found in {{ processingTimeMS }}ms</span>
+    <span class="intro-viewer-link"><a href="https://chrome.google.com/webstore/detail/irs-form-990-pf-viewer/mkdlgildlkgnabibkmckjlggcpenmiln" target="_blank">Install the free XML Viewer</a></span>
+  </script>
+
+  <!-- Facet template -->
+  <script type="text/template" id="facet-template">
+    <div class="facet">
+      <h5>{{ title }}</h5>
+      <ul>
+        {{#values}}
+        <li>
+          <a href="" class="facet-link toggle-refine {{#disjunctive}}facet-disjunctive{{/disjunctive}} {{#isRefined}}facet-refined{{/isRefined}}" data-facet="{{ facet }}" data-value="{{ name }}">
+            <span class="facet-value">{{ name }}</span>
+            <span class="facet-count format-number-facet">{{ count }}</span>
+          </a>
+        </li>
+        {{/values}}
+      </ul>
+    </div>
+  </script>
+
+  <!-- Slider template -->
+  <script type="text/template" id="slider-template">
+    <div class="facet">
+      <h5>{{ title }}</h5>
+      <input type="text" id="{{ facet }}-slider" data-min="{{ min }}" data-max="{{ max }}" data-from="{{ from }}" data-to="{{ to }}" class="format-number-facet" />
+    </div>
+  </script>
+
+  <!-- Pagination template -->
+  <script type="text/template" id="pagination-template">
+    <ul>
+      <li {{^prev_page}}class="disabled"{{/prev_page}}><a href="#" {{#prev_page}}class="go-to-page" data-page="{{ prev_page }}"{{/prev_page}}>&#60;</a></li>
+      {{#pages}}
+      <li class="{{#current}}active{{/current}} {{#disabled}}disabled{{/disabled}}"><a href="#" {{^disabled}} class="go-to-page" data-page="{{ number }}" {{/disabled}}>{{ number }}</a></li>
+      {{/pages}}
+      <li {{^next_page}}class="disabled"{{/next_page}}><a href="#" {{#next_page}}class="go-to-page" data-page="{{ next_page }}"{{/next_page}}>&#62;</a></li>
+    </ul>
+  </script>
+
+  <!-- No-Results template -->
+  <script type="text/template" id="no-results-template">
+    <div id="no-results-message">
+      <p>We didn't find any results for the search <em>"{{ query }}"</em>.</p>
+      <ul>
+        {{#filters}}
+        <li class="{{ class }}" data-facet="{{ facet }}" data-value="{{ facet_value }}">
+          {{ label }}<span class="value">{{ label_value }}</span><a class="remove"><img src="{{ site.baseurl }}/assets/img/remove.svg" alt="Remove" /></a>
+        </li>
+        {{/filters}}
+        <br>
+        <a href="" class='clear-all'>Clear all</a>
+      </ul>
+    </div>
+  </script>
+{% endraw %}

@@ -1,0 +1,12 @@
+<head>
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="Find machine-readable IRS Form 990PF's for US grantmaking institutions. An open source project from your friends at SmarterGiving.">
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <!-- /favicon -->
+  <link href='favicon.ico' rel='shortcut icon' type='image/vnd.microsoft.icon'>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.ion.rangeslider/2.0.12/css/ion.rangeSlider.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.ion.rangeslider/2.0.12/css/ion.rangeSlider.skinFlat.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/main.css">
+</head>

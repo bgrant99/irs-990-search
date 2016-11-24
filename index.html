@@ -1,173 +1,55 @@
-<!doctype html>
-<html>
-<head>
-  <title>US Grantmakers Search</title>
-  <meta name="description" content="Find machine-readable IRS Form 990PF's for US grantmaking institutions. An open source project from your friends at SmarterGiving.">
-  <!-- /favicon -->
-  <link href='favicon.ico' rel='shortcut icon' type='image/vnd.microsoft.icon'>
-  <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.ion.rangeslider/2.0.12/css/ion.rangeSlider.css">
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.ion.rangeslider/2.0.12/css/ion.rangeSlider.skinFlat.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/irs-990-search/assets/css/styles.css">
-</head>
-<body>
-
-  <!-- Header -->
-  <header>
-    <img class="logo" src="/irs-990-search/assets/img/instant_search_logo@2x.png" alt="US Grantmakers Search" />
-    <input id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Search by Foundation Name..." autofocus/>
-    <div id="search-input-icon"></div>
-    <div class="search-img-algolia"><a href="https://www.algolia.com">Search powered by <img src="/irs-990-search/assets/img/Algolia_logo_bg-white.svg" alt="Powered by Algolia"></a></div>
-    <div class="intro">Find electronic tax filings of US-based foundations <a href="#learn-more" class="scroll"><i class="fa fa-info-circle"></i></a></div>
-  </header>
-  <!-- /Header -->
+---
+layout: default
+---
+<!-- Header -->
+<header>
+  <img class="logo" src="{{ site.baseurl }}/assets/img/instant_search_logo@2x.png" alt="US Grantmakers Search" />
+  <input id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Search by Foundation Name..." autofocus/>
+  <div id="search-input-icon"></div>
+  <div class="search-img-algolia"><a href="https://www.algolia.com">Search powered by <img src="{{ site.baseurl }}/assets/img/Algolia_logo_bg-white.svg" alt="Powered by Algolia"></a></div>
+  <div class="intro">Find electronic tax filings of US-based foundations <a href="#learn-more" class="scroll"><i class="fa fa-info-circle"></i></a></div>
+</header>
+<!-- /Header -->
 
 
-  <!-- Main -->
-  <main>
-    <!-- Left Column -->
-    <div id="left-column">
-      <div id="facets"></div>
+<!-- Main -->
+<main>
+  <!-- Left Column -->
+  <div id="left-column">
+    <div id="facets"></div>
+  </div>
+
+  <!-- Right Column -->
+  <div id="right-column">
+    <div id="sort-by">Sort by:
+      <select dir="rtl" id="sort-by-select">
+        <option value="" selected>Most relevant</option>
+        <option value="_TaxPeriod_asc">Lowest Price</option>
+        <option value="_TaxPeriod_desc">Highest Price</option>
+      </select>
+      <span class="caret"></span>
     </div>
-
-    <!-- Right Column -->
-    <div id="right-column">
-      <div id="sort-by">Sort by:
-        <select dir="rtl" id="sort-by-select">
-          <option value="" selected>Most relevant</option>
-          <option value="_TaxPeriod_asc">Lowest Price</option>
-          <option value="_TaxPeriod_desc">Highest Price</option>
-        </select>
-        <span class="caret"></span>
-      </div>
-      <div id="stats"></div>
-      <div id="hits"></div>
-      <div id="pagination"></div>
-    </div>
-  </main>
-  <!-- /Main -->
+    <div id="stats"></div>
+    <div id="hits"></div>
+    <div id="pagination"></div>
+  </div>
+</main>
+<!-- /Main -->
 
 
-  <!-- Footer -->
-  <footer>
-    <div id="learn-more">
-      An open source tool from your friends at<br><a href="https://smartergiving.org"><img src="/irs-990-search/assets/img/smartergiving_logo.png" alt="SmarterGiving"></a>
-    </div>
-    <div class="footer-links">
-      Data Source: <a href="https://aws.amazon.com/public-data-sets/irs-990/">Electronically Filed IRS Form 990</a> |
-      Source Code: <a href="http://github.com/smartergiving/algolia-jekyll-instant-search">Github</a>
-    </div> 
-  </footer>
-  <!-- /Footer -->
+<!-- Footer -->
+<footer>
+  <div id="learn-more">
+    An open source tool from your friends at<br><a href="https://smartergiving.org"><img src="{{ site.baseurl }}/assets/img/smartergiving_logo.png" alt="SmarterGiving"></a>
+  </div>
+  <div class="footer-links">
+    Data Source: <a href="https://aws.amazon.com/public-data-sets/irs-990/">Electronically Filed IRS Form 990</a> |
+    Source Code: <a href="http://github.com/smartergiving/algolia-jekyll-instant-search">Github</a>
+  </div> 
+</footer>
+<!-- /Footer -->
 
 
-
-  <!-- Hit template -->
-  <script type="text/template" id="hit-template">
-    {{#hits}}
-    <div class="hit">
-      <div class="hit-image">
-        <img src="{{ image }}" alt="{{ name }}">
-      </div>
-      <div class="hit-content">
-        <!--
-        <h3 class="hit-price">${{ price }}</h3>
-        <h2 class="hit-name">{{{ _highlightResult.name.value }}}</h2>
-        <p class="hit-description">{{{ _highlightResult.description.value }}}</p> 
-        -->
-        <h3 class="hit-price">
-          <!-- <span class="format-EIN">{{ EIN }}</span> (EIN)<br> -->
-          <span class="hit-location">{{ City }}, {{ State }}</span>
-        </h3>
-
-        <h2 class="hit-name">{{{ _highlightResult.OrganizationName.value }}}</h2>
-
-        <div class="hit-filings-wrapper">
-          <ul>
-            {{#Filings}}
-            <li><a href="{{ URL }}" target="_blank">{{TaxYear}}</a></li>
-            {{/Filings}}
-            {{#Website}}
-            <li><a class="hit-website" data-website="{{ Website }}" href="" target="_blank"><i class="fa fa-globe"></i></a></li>
-            {{/Website}}
-          </ul>
-        </div>
-      </div>
-    </div>
-    {{/hits}}
-  </script>
-
-  <!-- Stats template -->
-  <script type="text/template" id="stats-template">
-    <span class="format-number">{{ nbHits }}</span> Grantmaker{{#nbHits_plural}}s{{/nbHits_plural}} <span class="found-in">Found in {{ processingTimeMS }}ms</span>
-    <span class="intro-viewer-link"><a href="https://chrome.google.com/webstore/detail/irs-form-990-pf-viewer/mkdlgildlkgnabibkmckjlggcpenmiln" target="_blank">Install the free XML Viewer</a></span>
-  </script>
-
-  <!-- Facet template -->
-  <script type="text/template" id="facet-template">
-    <div class="facet">
-      <h5>{{ title }}</h5>
-      <ul>
-        {{#values}}
-        <li>
-          <a href="" class="facet-link toggle-refine {{#disjunctive}}facet-disjunctive{{/disjunctive}} {{#isRefined}}facet-refined{{/isRefined}}" data-facet="{{ facet }}" data-value="{{ name }}">
-            <span class="facet-value">{{ name }}</span>
-            <span class="facet-count format-number-facet">{{ count }}</span>
-          </a>
-        </li>
-        {{/values}}
-      </ul>
-    </div>
-  </script>
-
-  <!-- Slider template -->
-  <script type="text/template" id="slider-template">
-    <div class="facet">
-      <h5>{{ title }}</h5>
-      <input type="text" id="{{ facet }}-slider" data-min="{{ min }}" data-max="{{ max }}" data-from="{{ from }}" data-to="{{ to }}" class="format-number-facet" />
-    </div>
-  </script>
-
-  <!-- Pagination template -->
-  <script type="text/template" id="pagination-template">
-    <ul>
-      <li {{^prev_page}}class="disabled"{{/prev_page}}><a href="#" {{#prev_page}}class="go-to-page" data-page="{{ prev_page }}"{{/prev_page}}>&#60;</a></li>
-      {{#pages}}
-      <li class="{{#current}}active{{/current}} {{#disabled}}disabled{{/disabled}}"><a href="#" {{^disabled}} class="go-to-page" data-page="{{ number }}" {{/disabled}}>{{ number }}</a></li>
-      {{/pages}}
-      <li {{^next_page}}class="disabled"{{/next_page}}><a href="#" {{#next_page}}class="go-to-page" data-page="{{ next_page }}"{{/next_page}}>&#62;</a></li>
-    </ul>
-  </script>
-
-  <!-- No-Results template -->
-  <script type="text/template" id="no-results-template">
-    <div id="no-results-message">
-      <p>We didn't find any results for the search <em>"{{ query }}"</em>.</p>
-      <ul>
-        {{#filters}}
-        <li class="{{ class }}" data-facet="{{ facet }}" data-value="{{ facet_value }}">
-          {{ label }}<span class="value">{{ label_value }}</span><a class="remove"><img src="/irs-990-search/assets/img/remove.svg" alt="Remove" /></a>
-        </li>
-        {{/filters}}
-        <br>
-        <a href="" class='clear-all'>Clear all</a>
-      </ul>
-    </div>
-  </script>
-
-
-
-  <!-- Javascript -->
-  <script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script>
-  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Object.assign,Intl.~locale.en"></script>
-  <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-  <script src="//cdn.jsdelivr.net/algoliasearch.helper/2/algoliasearch.helper.min.js"></script>
-  <script src="//cdn.jsdelivr.net/hogan.js/3.0.2/hogan.min.common.js"></script>
-  <script src="//cdn.jsdelivr.net/jquery.ion.rangeslider/2.0.12/js/ion.rangeSlider.min.js"></script>
-  <script src="/irs-990-search/assets/js/app.js"></script>
-  <script src="/irs-990-search/assets/js/scroll.min.js"></script>
-  <!-- /Javascript -->
-
-</body>
-</html>
+<!-- Hogan.js Search Template -->
+  {% include search.html %}
+<!-- /Hogan.js Search Template -->

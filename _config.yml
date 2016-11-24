@@ -1,11 +1,11 @@
 # Site settings
 # Meta tags
-title: #Not used
-description: #Not used
+title: US Grantmakers Search
+description: Find machine-readable IRS Form 990PF's for US grantmaking institutions. An open source project from your friends at SmarterGiving.
 
 # Jekyll settings
-baseurl: "/irs-990-search" # Leave this blank unless your site is located on a subpath, e.g. /blog
-url: "https://smartergiving.org" # Typically http://www.yourdomain.org
+baseurl: /irs-990-search # Leave this blank unless your site is located on a subpath, e.g. /blog
+url: https://smartergiving.org # Typically http://www.yourdomain.org
 sass:
   sass_dir: assets/css/_sass
 
