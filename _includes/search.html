@@ -7,14 +7,10 @@
         <img src="{{ image }}" alt="{{ name }}">
       </div>
       <div class="hit-content">
-        <!--
-        <h3 class="hit-price">${{ price }}</h3>
-        <h2 class="hit-name">{{{ _highlightResult.name.value }}}</h2>
-        <p class="hit-description">{{{ _highlightResult.description.value }}}</p> 
-        -->
         <h3 class="hit-price">
-          <!-- <span class="format-EIN">{{ EIN }}</span> (EIN)<br> -->
-          <span class="hit-location">{{ City }}, {{ State }}</span>
+          <span class="hit-location">{{{ _highlightResult.City.value }}}, {{{ _highlightResult.State.value }}}</span>
+          <span class="hit-ein">{{ EIN }}</span>
+          <span class="hit-assets">{{ Assets }}</span>
         </h3>
 
         <h2 class="hit-name">{{{ _highlightResult.OrganizationName.value }}}</h2>
@@ -37,7 +33,6 @@
   <!-- Stats template -->
   <script type="text/template" id="stats-template">
     <span class="format-number">{{ nbHits }}</span> Grantmaker{{#nbHits_plural}}s{{/nbHits_plural}} <span class="found-in">Found in {{ processingTimeMS }}ms</span>
-    <span class="intro-viewer-link"><a href="https://chrome.google.com/webstore/detail/irs-form-990-pf-viewer/mkdlgildlkgnabibkmckjlggcpenmiln" target="_blank">Install the free XML Viewer</a></span>
   </script>
 
   <!-- Facet template -->

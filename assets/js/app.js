@@ -49,7 +49,8 @@ $(document).ready(function() {
   // Input binding
   $searchInput
   .on('input propertychange', function(e) {
-    var query = e.currentTarget.value;
+    //var query = e.currentTarget.value;
+    var query = e.currentTarget.value.replace('-',''); //Handle EINs entered with a hyphen
 
     toggleIconEmptyInput(query);
     algoliaHelper.setQuery(query).search();
@@ -106,9 +107,9 @@ $(document).ready(function() {
     $hits.html(hitTemplate.render(content));
 
     //Format EIN results
-    $('.format-EIN').each(function(){
+    $('.hit-ein').each(function(){
       var string = $(this).text();
-      $(this).text(string.substring(0,2) + '-' + string.substring(2,8));
+      $(this).text(string.substring(0,2) + '-' + string.substring(2,9));
     });
 
     //TODO - DRY it up
@@ -147,6 +148,13 @@ $(document).ready(function() {
           );
         });
       }
+    });
+
+    //Format Asset figures
+    $('.hit-assets').each(function(){
+      var n = $(this).text();
+      var formattedNumber = '$' + formatter.format(n);
+      $(this).text(formattedNumber);
     });
 
   }
@@ -338,6 +346,12 @@ $(document).ready(function() {
     $searchInput.val('').focus();
     algoliaHelper.setQuery('').clearRefinements().search();
   });
+  $(document).on('click', '.try ul li a', function(e) {
+    e.preventDefault();
+    var target = $(this).text();
+    $searchInput.val(target.replace('-',''));
+    algoliaHelper.setQuery(target.replace('-','')).search();
+  });
 
 
 
@@ -390,9 +404,26 @@ $(document).ready(function() {
     $searchInputIcon.toggleClass('empty', query.trim() !== '');
   }
 
+  //Show clear all icon if any value in search box
+  if ($('#search-input').val().length > 0) {
+    $searchInputIcon.addClass('empty');
+  }
+
+  //Format numbers and currency
   var formatter = new Intl.NumberFormat('en-US', {
     style: 'decimal',
     minimumFractionDigits: 0,
+  });
+
+  //
+
+  //Hide footer tip on scroll
+  $(window).scroll(function() {
+    if ($(this).scrollTop()>0) {
+      $('#footer-alert').fadeOut();
+     } else {
+      $('#footer-alert').fadeIn();
+     }
   });
 
 });

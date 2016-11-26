@@ -4,10 +4,17 @@ layout: default
 <!-- Header -->
 <header>
   <img class="logo" src="{{ site.baseurl }}/assets/img/instant_search_logo@2x.png" alt="US Grantmakers Search" />
-  <input id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Search by Foundation Name..." autofocus/>
+  <input id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" placeholder="Search..." autofocus/>
   <div id="search-input-icon"></div>
   <div class="search-img-algolia"><a href="https://www.algolia.com">Search powered by <img src="{{ site.baseurl }}/assets/img/Algolia_logo_bg-white.svg" alt="Powered by Algolia"></a></div>
-  <div class="intro">Find electronic tax filings of US-based foundations <a href="#learn-more" class="scroll"><i class="fa fa-info-circle"></i></a></div>
+  <div class="try">
+    <ul>
+      <li>Try:</li>
+      <li><a href="/irs-990-search/?q=novo%20foundation&">Novo Foundation</a></li>
+      <li><a href="/irs-990-search/?q=bend%2C%20or&">Bend, OR</a></li>
+      <li><a href="/irs-990-search/?q=510381959&">51-0381959</a></li>
+    </ul>
+  </div>
 </header>
 <!-- /Header -->
 
@@ -36,16 +43,29 @@ layout: default
 </main>
 <!-- /Main -->
 
+<section id="footer-alert">
+  <div class="footer-alert-wrapper">
+    <div class="footer-alert-left footer-alert-tip">
+      A <a href="https://github.com/smartergiving/irs-990-search">free and open source</a> tool to find machine-readable IRS Form 990-PFs in XML format
+    </div>
+    <div class="footer-alert-right">
+      <div class="footer-viewer-link">
+        <a href="https://chrome.google.com/webstore/detail/irs-form-990-pf-viewer/mkdlgildlkgnabibkmckjlggcpenmiln" target="_blank">Install the free XML Viewer</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- Footer -->
 <footer>
-  <div id="learn-more">
-    An open source tool from your friends at<br><a href="https://smartergiving.org"><img src="{{ site.baseurl }}/assets/img/smartergiving_logo.png" alt="SmarterGiving"></a>
-  </div>
   <div class="footer-links">
     Data Source: <a href="https://aws.amazon.com/public-data-sets/irs-990/">Electronically Filed IRS Form 990</a> |
     Source Code: <a href="http://github.com/smartergiving/algolia-jekyll-instant-search">Github</a>
   </div> 
+  <div id="learn-more">
+    <a href="https://smartergiving.org"><img src="{{ site.baseurl }}/assets/img/smartergiving_logo.png" alt="SmarterGiving"></a>
+  </div>
 </footer>
 <!-- /Footer -->
 
