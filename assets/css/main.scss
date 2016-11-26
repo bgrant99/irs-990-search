@@ -9,7 +9,8 @@ $baseurl: {{ site.baseurl }};
 	$green: #49BF9D;
 	$green-light: #E2FBF4;
 	$gray: #999;
-	$gray-light: #eee;
+	$gray-medium: #e0e0e0;
+	$gray-light: #f7f7f7;
 	$black: #333;
 	
 	//Default theme
@@ -67,7 +68,7 @@ header img.logo {
 	margin-left: 26%;
 	padding: 10px 0 6px;
 	border: none;
-	border-bottom: 5px solid $gray-light;
+	border-bottom: 5px solid $gray-medium;
 }
 #search-input, #search-input:focus {
 	transition: border-color .3s ease-in;
@@ -106,12 +107,12 @@ header img.logo {
 #hits {
 	margin: 4px 0;
 	padding: 10px 0;
-	border-top: 2px solid $gray-light;
+	border-top: 2px solid $gray-medium;
 }
 .hit {
 	font-size: 0;
 	padding: 8px 0;
-	border-bottom: 1px solid $gray-light;
+	border-bottom: 1px solid $gray-medium;
 }
 .hit-image {
 	display: inline-block;
@@ -168,7 +169,7 @@ header img.logo {
 	padding: 8px 12px;
 	text-decoration: none;
 	color: $black;
-	border: 1px solid $gray-light;
+	border: 1px solid $gray-medium;
 	border-right: none;
 }
 #pagination a:hover {
@@ -179,7 +180,7 @@ header img.logo {
 	border-bottom-left-radius: 4px;
 }
 #pagination li:last-child a {
-	border-right: 1px solid $gray-light;
+	border-right: 1px solid $gray-medium;
 	border-top-right-radius: 4px;
 	border-bottom-right-radius: 4px;
 }
@@ -261,7 +262,7 @@ header img.logo {
 	margin: 0 0 6px;
 	padding: 0 0 6px;
 	text-transform: uppercase;
-	border-bottom: 2px solid $gray-light;
+	border-bottom: 2px solid $gray-medium;
 }
 .facet ul {
 	margin: 0;
@@ -340,7 +341,7 @@ header img.logo {
 	margin: 4px 2px;
 	padding: 4px 28px 4px 8px;
 	color: $gray;
-	border: 1px solid #ddd; //TODO Cleanup grays and hover states with darken/lighten
+	border: 1px solid $gray-medium;
 	border-radius: 12px;
 }
 #no-results-message li span.value {
@@ -367,7 +368,7 @@ a.clear-all {
 	padding: 8px 12px;
 	text-decoration: none;
 	color: black;
-	border: 2px solid #ddd; //TODO Cleanup grays and hover states with darken/lighten
+	border: 2px solid $gray-medium;
 	border-radius: 4px;
 }
 a.clear-all:hover {
@@ -439,7 +440,7 @@ header {
     left: 23%;
     margin-top: 15px;
     margin-left: 30px;
-    color: #999;
+    color: $gray;
     font-size: 13px;
     line-height: 1.5em;
 }
@@ -456,7 +457,7 @@ header {
 	text-decoration: none;
 	padding: .2em 1em;
 	color: $gray;
-	background-color: #f7f7f7; //TODO Cleanup grays and hover states with darken/lighten
+	background-color: $gray-light;
 	border-radius: 3px;
 }
 .try a:hover {
@@ -468,7 +469,7 @@ header {
     padding: 2%;
 }
 a .hit-content:hover {
-	background-color: #fafafa; //TODO Cleanup grays and hover states with darken/lighten
+	background-color: darken($gray-light, 10%);
 }
 .hit-content .hit-price {
 	font-size: 13px;
@@ -491,11 +492,11 @@ a .hit-content:hover {
 	text-decoration: none;
 	padding: .2em 1em;
 	color: $gray;
-	background-color: #f7f7f7; //TODO Cleanup grays and hover states with darken/lighten
+	background-color: $gray-light;
 	border-radius: 3px;
 }
 .hit-filings-wrapper ul li:first-child a {
-	background-color: #e0e0e0; //TODO Cleanup grays and hover states with darken/lighten
+	background-color: $gray-medium;
 }
 
 .hit-filings-wrapper ul li a:hover {
@@ -559,7 +560,7 @@ a .hit-content:hover {
 	background-color: $orange;
 }
 footer {
-	border-top: 1px solid $gray-light;
+	border-top: 1px solid $gray-medium;
     padding-top: 50px;
 }
 #learn-more img {
