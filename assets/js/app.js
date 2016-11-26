@@ -143,8 +143,7 @@ $(document).ready(function() {
         $(this).bind('click', function(){
           alert(
             'Hmm, looks like the website url is not properly formatted.' + 
-            '\n\n' + site + '\n\n' +
-            'Copy and pasting into Google should help find the right site.'
+            '\n\n' + site + '\n\n'
           );
         });
       }
