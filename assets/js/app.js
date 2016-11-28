@@ -17,7 +17,7 @@ $(document).ready(function() {
   };
   var FACETS_SLIDER = ['Assets'];
   var FACETS_ORDER_OF_DISPLAY = ['City', 'State', 'Filings.TaxYear'];
-  var FACETS_LABELS = {'Filings.TaxYear': 'Tax Year'};
+  var FACETS_LABELS = {'City': 'City', 'State': 'State', 'Filings.TaxYear': 'Tax Year'};
 
   // Client + Helper initialization
   var algolia = algoliasearch(APPLICATION_ID, SEARCH_ONLY_API_KEY);

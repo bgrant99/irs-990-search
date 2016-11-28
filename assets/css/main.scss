@@ -339,7 +339,7 @@ header img.logo {
 	position: relative;
 	display: inline-block;
 	margin: 4px 2px;
-	padding: 4px 28px 4px 8px;
+	padding: 4px 8px 4px 8px;
 	color: $gray;
 	border: 1px solid $gray-medium;
 	border-radius: 12px;
@@ -347,6 +347,11 @@ header img.logo {
 #no-results-message li span.value {
 	font-weight: bold;
 	color: $black;
+}
+#no-results-message i {
+	font-size: 17px;
+	margin-left: 5px;
+	opacity: .5;
 }
 #no-results-message li a.remove img {
 	position: absolute;
@@ -357,8 +362,9 @@ header img.logo {
 	height: 17px;
 	opacity: .5;
 }
-#no-results-message li a.remove:hover img {
+#no-results-message i:hover, #no-results-message li a.remove:hover img {
 	opacity: 1;
+	cursor: pointer;
 }
 a.clear-all {
 	font-size: 12px;
