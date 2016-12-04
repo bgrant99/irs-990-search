@@ -11,7 +11,7 @@ It's goal is to demonstrate the use of hosted microservices to create near maint
 
 *This is a fork of Algolia's [Instant Search Demo](https://github.com/algolia/instant-search-demo). Please view the README on that project for detailed instructions including links to a step by step tutorial.*
 
-1) Create your free Algolia account and upload the `index.json` file located in `_data`, naming the index `filings_pf_grouped_by_ein` 
+1) Create your free Algolia account and upload the `algolia.json` file located in `_data`, naming the index `filings_pf_grouped_by_ein` 
 
 2) In the Algolia dashboard, adjust the settings as follows:  
 

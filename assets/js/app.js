@@ -11,13 +11,13 @@ $(document).ready(function() {
   var PARAMS = {
     hitsPerPage: 10,
     maxValuesPerFacet: 8,
-    facets: ['City', 'State', 'Filings.TaxYear'],
-    disjunctiveFacets: [],
+    facets: ['GrantMedian'],
+    disjunctiveFacets: ['City', 'State', 'isLikelyStaffed'],
     index: INDEX_NAME
   };
-  var FACETS_SLIDER = ['Assets'];
-  var FACETS_ORDER_OF_DISPLAY = ['City', 'State', 'Filings.TaxYear'];
-  var FACETS_LABELS = {'City': 'City', 'State': 'State', 'Filings.TaxYear': 'Tax Year'};
+  var FACETS_SLIDER = ['GrantMedian'];
+  var FACETS_ORDER_OF_DISPLAY = ['City', 'State', 'isLikelyStaffed', 'GrantMedian'];
+  var FACETS_LABELS = {'GrantMedian': 'Grant Size', 'City': 'City', 'State': 'State', 'isLikelyStaffed': 'Staffed'};
 
   // Client + Helper initialization
   var algolia = algoliasearch(APPLICATION_ID, SEARCH_ONLY_API_KEY);
@@ -122,20 +122,6 @@ $(document).ready(function() {
 
         site = site;
         $(this).attr('href', site);
-      
-      } else if (site && site.match(/(^www.)/i)) {  //Check if www.
-
-        site = 'http://' + site;
-        $(this).attr('href', site);
-       
-      } else if (site && site.match(/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/i)) { //Check if apex domain (e.g. example.com)
-
-        site = 'http://' + site;
-        $(this).attr('href', site);
-       
-      } else if (site && site.match(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/i)) { //Check if email address
-        site = 'mailto:' + site;
-        $(this).attr('href', site);
         
       } else { //Alert if malformed url
 
@@ -153,9 +139,9 @@ $(document).ready(function() {
     $('.hit-assets').each(function(){
       var n = $(this).text();
       var formattedNumber = '$' + formatter.format(n);
+      //var abbreviatedNumber = '$' + abbreviateNumber(parseInt(n),1);
       $(this).text(formattedNumber);
     });
-
   }
 
 
@@ -175,6 +161,8 @@ $(document).ready(function() {
         };
         facetContent.min = facetResult.stats.min;
         facetContent.max = facetResult.stats.max;
+        //facetContent.min = 0;
+        //facetContent.max = 50000000000;
         var from = state.getNumericRefinement(facetName, '>=') || facetContent.min;
         var to = state.getNumericRefinement(facetName, '<=') || facetContent.max;
         facetContent.from = Math.min(facetContent.max, Math.max(facetContent.min, from));
@@ -198,11 +186,15 @@ $(document).ready(function() {
       var string = $.trim($(this).text());
       $(this).html(string.substring(0,4) + '-' + string.substring(4,6));
     });
+
     $('.format-number-facet').each(function(){
       var n = $(this).text();
       var formattedNumber = formatter.format(n);
       $(this).text(formattedNumber);
     });
+
+    //Adjust 'Staffed' label
+    $('[data-facet="isLikelyStaffed"][data-value="true"] .facet-value').text('Likely');
   }
 
   function bindSearchObjects(state) {
@@ -229,11 +221,14 @@ $(document).ready(function() {
       var slider = $('#' + facetName + '-slider');
       var sliderOptions = {
         type: 'double',
+        //values: [0, 1000000, 100000000, 1000000000, 50000000000],
         grid: true,
         min: slider.data('min'),
         max: slider.data('max'),
         from: slider.data('from'),
         to: slider.data('to'),
+        keyboard: true,
+        keyboard_step: 1000,
         prettify_enabled: true,
         prettify_separator: ",",
         prefix: "$",
@@ -334,7 +329,7 @@ $(document).ready(function() {
   $searchInputIcon.on('click', function(e) {
     e.preventDefault();
     $searchInput.val('').keyup().focus();
-    algoliaHelper.setQuery('').clearRefinements().search();
+    algoliaHelper.setQuery('').search();
   });
   $(document).on('click', '.remove-numeric-refine', function(e) {
     e.preventDefault();
@@ -345,6 +340,17 @@ $(document).ready(function() {
     $searchInput.val('').focus();
     algoliaHelper.setQuery('').clearRefinements().search();
   });
+  $(document).on('click', '.clear-search', function(e) {
+    e.preventDefault();
+    $searchInput.val('').focus();
+    algoliaHelper.setQuery('').search();
+  });
+  $(document).on('click', '.clear-refinements', function(e) {
+    e.preventDefault();
+    $searchInput.focus();
+    algoliaHelper.setQuery('').clearRefinements().search();
+  });
+  //Ignore hyphens in EIN search
   $(document).on('click', '.try ul li a', function(e) {
     e.preventDefault();
     var target = $(this).text();
@@ -413,6 +419,19 @@ $(document).ready(function() {
     style: 'decimal',
     minimumFractionDigits: 0,
   });
+
+  //Abbreviate large numbers and currency
+  function abbreviateNumber(num, fixed) {
+    if (num === null) { return null; } // terminate early
+    if (num === 0) { return '0'; } // terminate early
+    fixed = (!fixed || fixed < 0) ? 0 : fixed; // number of decimal places to show
+    var b = (num).toPrecision(2).split("e"), // get power
+        k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3), // floor at decimals, ceiling at trillions
+        c = k < 1 ? num.toFixed(0 + fixed) : (num / Math.pow(10, k * 3) ).toFixed(1 + fixed), // divide by power
+        d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
+        e = d + ['', 'K', 'M', 'B', 'T'][k]; // append power
+    return e;
+  }
 
   //
 

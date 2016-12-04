@@ -278,6 +278,9 @@ header img.logo {
 	text-decoration: none;
 	color: $black;
 }
+.facet-link:hover {
+	text-decoration: none;
+}
 .facet-link:hover, .facet-link.facet-refined {
 	color: $green;
 }
@@ -299,21 +302,30 @@ header img.logo {
 }
 .facet-disjunctive:before {
 	position: absolute;
-	top: 1px;
+	top: 0px;
 	left: -18px;
 	width: 16px;
 	height: 16px;
-	content: '';
-	background: url({{ site.baseurl }}/assets/img/checkbox_icons.png) 0 0 no-repeat;
+	//content: '';
+	//background: url({{ site.baseurl }}/assets/img/checkbox_icons.png) 0 0 no-repeat;
+	font-family: FontAwesome;
+	color: $gray;
+    display: inline-block;
+    content: '\f1db';
+    background: none;
 }
 .facet-disjunctive:hover:before {
-	background-position: -24px 0;
+	//background-position: -24px 0;
+	color: $green;
 }
 .facet-disjunctive.facet-refined:before {
-	background-position: -48px 0;
+	//background-position: -48px 0;
+	color: $green;
+	content: '\f00c'; 
 }
 .facet-disjunctive.facet-refined:hover:before {
-	background-position: -72px 0;
+	//background-position: -72px 0;
+	content: '\f00d';
 }
 
 
@@ -378,8 +390,12 @@ a.clear-all {
 	border-radius: 4px;
 }
 a.clear-all:hover {
-	transition: border-color .3s ease-in;
-	border-color: $gray;
+	//transition: border-color .3s ease-in, background-color .3s ease-in, color .3s ease-in;
+	text-decoration: none;
+	cursor: pointer;
+	color: #fff;
+	border-color: $green;
+	background-color: $green;
 }
 
 
@@ -484,6 +500,10 @@ a .hit-content:hover {
 .hit-content .hit-description {
 	color: $gray;
 }
+.irs-line-mid, .irs-line-left, .irs-line-right, .irs-bar, .irs-bar-edge, .irs-slider {
+    background-image: url({{ site.baseurl }}/assets/img/sprite-skin-nice.png);
+    background-repeat: repeat-x;
+}
 .hit-filings-wrapper ul {
 	margin: 0;
 	padding: 0;
@@ -516,6 +536,12 @@ a .hit-content:hover {
 }
 .hit-assets, .hit-ein {
 	color: $gray;
+}
+[data-facet='isLikelyStaffed'][data-value='false'] {
+  display: none;
+}
+.facet-clear-all {
+	text-align: center;
 }
 #footer-alert {
     font-size: 12px;
