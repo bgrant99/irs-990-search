@@ -11,13 +11,13 @@ It's goal is to demonstrate the use of hosted microservices to create near maint
 
 *This is a fork of Algolia's [Instant Search Demo](https://github.com/algolia/instant-search-demo). Please view the README on that project for detailed instructions including links to a step by step tutorial.*
 
-1) Create your free Algolia account and upload the `algolia.json` file located in `_data`, naming the index `filings_pf_grouped_by_ein` 
+1) Create your free Algolia account and upload `/algolia/algolia.json`. Name the index `filings_pf_grouped_by_ein` 
 
 2) In the Algolia dashboard, adjust the settings as follows:  
 
-- `Indices > Rankings > Basic Settings`  
-  - Add a Searchable Attribute (click `OrganizationName`)  
-  - Add a Custom Ranking Attribute (click `Filings.TaxPeriod`)  
+  - `Indices > Rankings > Basic Settings`  
+  - Add a Searchable Attribute (e.g. `OrganizationName`)  
+  - Add a Custom Ranking Attribute (e.g. `Filings.TaxPeriod`)  
 
 3) Replace the demo credentials with your own:
 - in `assets/js/app.js`, set your own `APPLICATION_ID`  
