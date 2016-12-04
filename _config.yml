@@ -13,5 +13,10 @@ sass:
 markdown: kramdown
 kramdown:
   input: GFM
-exclude: 
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
   - README.md
+  - node_modules
+  - algolia/
