@@ -38,7 +38,7 @@
   <!-- Facet template -->
   <script type="text/template" id="facet-template">
     <div class="facet">
-      <h5>{{ title }}</h5>
+      <h5>{{ title }} <span data-tooltip-facet={{facet}}><i class="facet-info fa fa-info-circle"></i></span></h5>
       <ul>
         {{#values}}
         <li>
@@ -55,12 +55,11 @@
   <!-- Slider template -->
   <script type="text/template" id="slider-template">
     <div class="facet">
-      <h5>{{ title }}</h5>
+      <h5>{{ title }} <span data-tooltip-facet={{facet}}><i class="facet-info fa fa-info-circle"></i></span></h5>
       <input type="text" id="{{ facet }}-slider" data-min="{{ min }}" data-max="{{ max }}" data-from="{{ from }}" data-to="{{ to }}" class="format-number-facet" />
     </div>
     <div class="facet facet-clear-all">
-      <h5></h5>
-      <a class='clear-all'>Clear all</a>
+      <a class='clear-all clear-all-full-width'>Clear All</a>
     </div>
   </script>
 

@@ -161,8 +161,8 @@ $(document).ready(function() {
         };
         facetContent.min = facetResult.stats.min;
         facetContent.max = facetResult.stats.max;
-        //facetContent.min = 0;
-        //facetContent.max = 50000000000;
+        facetContent.min = 0;
+        facetContent.max = 1000000;
         var from = state.getNumericRefinement(facetName, '>=') || facetContent.min;
         var to = state.getNumericRefinement(facetName, '<=') || facetContent.max;
         facetContent.from = Math.min(facetContent.max, Math.max(facetContent.min, from));
@@ -195,6 +195,11 @@ $(document).ready(function() {
 
     //Adjust 'Staffed' label
     $('[data-facet="isLikelyStaffed"][data-value="true"] .facet-value').text('Likely');
+    $('[data-facet="isLikelyStaffed"][data-value="false"]').hide();
+
+    //Add tooltips
+    $('[data-tooltip-facet="isLikelyStaffed"]').attr('data-tooltip', 'One staff member working at least 35 hours per week');
+    $('[data-tooltip-facet="GrantMedian"]').attr('data-tooltip', 'Median grant size for latest tax year');
   }
 
   function bindSearchObjects(state) {
@@ -409,17 +414,6 @@ $(document).ready(function() {
     $searchInputIcon.toggleClass('empty', query.trim() !== '');
   }
 
-  //Show clear all icon if any value in search box
-  if ($('#search-input').val().length > 0) {
-    $searchInputIcon.addClass('empty');
-  }
-
-  //Format numbers and currency
-  var formatter = new Intl.NumberFormat('en-US', {
-    style: 'decimal',
-    minimumFractionDigits: 0,
-  });
-
   //Abbreviate large numbers and currency
   function abbreviateNumber(num, fixed) {
     if (num === null) { return null; } // terminate early
@@ -433,7 +427,19 @@ $(document).ready(function() {
     return e;
   }
 
-  //
+  // FORMATTING
+  // ==========
+
+  //Show clear all icon if any value in search box
+  if ($('#search-input').val().length > 0) {
+    $searchInputIcon.addClass('empty');
+  }
+
+  //Format numbers and currency
+  var formatter = new Intl.NumberFormat('en-US', {
+    style: 'decimal',
+    minimumFractionDigits: 0,
+  });
 
   //Hide footer tip on scroll
   $(window).scroll(function() {

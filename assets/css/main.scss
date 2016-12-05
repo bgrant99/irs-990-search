@@ -1,6 +1,7 @@
 ---
 ---
 $baseurl: {{ site.baseurl }};
+@import 'tooltips';
 
 /* SASS VARIABLES
 // ------------------------- */
@@ -385,12 +386,17 @@ a.clear-all {
 	margin: 10px;
 	padding: 8px 12px;
 	text-decoration: none;
-	color: black;
-	border: 2px solid $gray-medium;
+	color: #fff;
+	background-color: $green;
 	border-radius: 4px;
 }
-a.clear-all:hover {
-	//transition: border-color .3s ease-in, background-color .3s ease-in, color .3s ease-in;
+a.clear-all-full-width {
+	display: block;
+	margin: 10px 0px;
+	color: $gray;
+	background-color: $gray-light;
+	}
+a.clear-all:hover, a.clear-all-full-width:hover {
 	text-decoration: none;
 	cursor: pointer;
 	color: #fff;
@@ -537,8 +543,16 @@ a .hit-content:hover {
 .hit-assets, .hit-ein {
 	color: $gray;
 }
-[data-facet='isLikelyStaffed'][data-value='false'] {
-  display: none;
+[data-tooltip-facet] {
+	display: none;
+}
+[data-tooltip] {
+	display: inline-block;
+	text-transform: none;
+	text-align: center;
+}
+.facet-info {
+	color: $gray;
 }
 .facet-clear-all {
 	text-align: center;
