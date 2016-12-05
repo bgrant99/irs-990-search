@@ -194,11 +194,12 @@ $(document).ready(function() {
     });
 
     //Adjust 'Staffed' label
-    $('[data-facet="isLikelyStaffed"][data-value="true"] .facet-value').text('Likely');
-    $('[data-facet="isLikelyStaffed"][data-value="false"]').hide();
+    $('[data-facet="isLikelyStaffed"][data-value="true"] .facet-value').text('Full-Time');
+    $('[data-facet="isLikelyStaffed"][data-value="false"] .facet-value').text('Part-Time or None');
+    //$('[data-facet="isLikelyStaffed"][data-value="false"]').hide();
 
     //Add tooltips
-    $('[data-tooltip-facet="isLikelyStaffed"]').attr('data-tooltip', 'One staff member working at least 35 hours per week');
+    $('[data-tooltip-facet="isLikelyStaffed"]').attr('data-tooltip', 'Full-Time = One staff member working at least 35 hours per week');
     $('[data-tooltip-facet="GrantMedian"]').attr('data-tooltip', 'Median grant size for latest tax year');
   }
 
