@@ -3,6 +3,16 @@
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   <!-- /favicon -->
   <link href='favicon.ico' rel='shortcut icon' type='image/vnd.microsoft.icon'>
+  <!-- Progress Bar -->
+  <script data-pace-options='{
+      "elements": {
+        "selectors": ["#stats-template"]
+      },
+      "restartOnPushState": false,
+      "restartOnRequestAfter": false
+    }' src="{{ site.baseurl }}/assets/js/pace.min.js">
+    </script>
+  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/pace.css">
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.ion.rangeslider/2.0.12/css/ion.rangeSlider.css">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.ion.rangeslider/2.0.12/css/ion.rangeSlider.skinNice.css">
