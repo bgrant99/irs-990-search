@@ -17,7 +17,7 @@ $(document).ready(function() {
   };
   var FACETS_SLIDER = ['GrantMedian'];
   var FACETS_ORDER_OF_DISPLAY = ['City', 'State', 'isLikelyStaffed', 'GrantMedian'];
-  var FACETS_LABELS = {'GrantMedian': 'Grant Size', 'City': 'City', 'State': 'State', 'isLikelyStaffed': 'Staffed'};
+  var FACETS_LABELS = {'GrantMedian': 'Grant Size', 'City': 'City', 'State': 'State', 'isLikelyStaffed': 'Staff'};
 
   // Client + Helper initialization
   var algolia = algoliasearch(APPLICATION_ID, SEARCH_ONLY_API_KEY);
@@ -195,7 +195,7 @@ $(document).ready(function() {
 
     //Adjust 'Staffed' label
     $('[data-facet="isLikelyStaffed"][data-value="true"] .facet-value').text('Full-Time');
-    $('[data-facet="isLikelyStaffed"][data-value="false"] .facet-value').text('Part-Time or None');
+    $('[data-facet="isLikelyStaffed"][data-value="false"] .facet-value').text('Part-Time | None');
     //$('[data-facet="isLikelyStaffed"][data-value="false"]').hide();
 
     //Add tooltips
