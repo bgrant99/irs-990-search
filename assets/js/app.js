@@ -237,6 +237,7 @@ $(document).ready(function() {
         keyboard_step: 1000,
         prettify_enabled: true,
         prettify_separator: ",",
+        force_edges: true,
         prefix: "$",
         onFinish: createOnFinish(facetName)
       };
