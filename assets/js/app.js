@@ -5,8 +5,8 @@ $(document).ready(function() {
   // ==============
 
   // Replace with your own values
-  var APPLICATION_ID = 'KDWVSZVS1I';
-  var SEARCH_ONLY_API_KEY = 'ce4d584b0de36ca3f8b4727fdb83c658';
+  var APPLICATION_ID = 'Q6S567MGIW';
+  var SEARCH_ONLY_API_KEY = '3261f3f6fcadd5a43a442223e9266226';
   var INDEX_NAME = 'filings_pf_grouped_by_ein';
   var PARAMS = {
     hitsPerPage: 10,
